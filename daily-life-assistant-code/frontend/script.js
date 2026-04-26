@@ -4,7 +4,7 @@
    ============================================================ */
 
 const API_BASE = (location.port === '5500' || location.protocol === 'file:')
-  ? 'http://localhost:3000/api'   // open frontend separately, backend on port 3000
+  ? 'https://family-hub-hud5.onrender.com/api'  // open frontend separately, backend on port 3000
   : '/api';                        // when backend serves the frontend itself
 
 document.getElementById('api-url').textContent = API_BASE;
