@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#f59e0b" />
+  <title>Daily Life Assistant — Family Hub</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo">F</div>
+    <div>
+      <h1>Family Hub</h1>
+      <div class="tagline">Daily Life Assistant</div>
+    </div>
+  </div>
+  <div class="header-actions">
+    <button id="enable-notif" class="btn btn-ghost" title="Phone notifications">🔔 Enable Alerts</button>
+    <span id="conn-status" class="conn-status">Connecting…</span>
+  </div>
+</header>
+
+<nav class="tabs">
+  <button data-page="dashboard" class="active">🏠 Dashboard</button>
+  <button data-page="student">📚 Student</button>
+  <button data-page="mother">🛒 Mother</button>
+  <button data-page="father">💳 Father</button>
+  <button data-page="calendar">📅 Calendar</button>
+  <button data-page="notifications">🔔 Alerts</button>
+</nav>
+
+<main>
+  <!-- DASHBOARD -->
+  <section class="page active" id="page-dashboard">
+    <h2 class="greeting">Good day, Family 👋</h2>
+    <p class="sub">Here's what's happening around the house today.</p>
+
+    <div class="grid">
+      <div class="card accent-amber"><h3>Pending Tasks</h3><div class="num" id="stat-tasks">0</div><div class="hint">study tasks</div></div>
+      <div class="card accent-sage"><h3>Grocery to Buy</h3><div class="num" id="stat-grocery">0</div><div class="hint" id="stat-grocery-hint">items</div></div>
+      <div class="card accent-rose"><h3>Bills Due Soon</h3><div class="num" id="stat-bills">0</div><div class="hint">in 7 days</div></div>
+      <div class="card accent-blue"><h3>Events This Week</h3><div class="num" id="stat-events">0</div><div class="hint">on calendar</div></div>
+    </div>
+
+    <div class="section">
+      <h2>💡 AI Insights & Suggestions</h2>
+      <div id="insights"></div>
+    </div>
+  </section>
+
+  <!-- STUDENT -->
+  <section class="page" id="page-student">
+    <h2 class="greeting">📚 Student Planner</h2>
+    <p class="sub">Track study tasks and keep notes.</p>
+
+    <div class="section">
+      <h2>Add a study task</h2>
+      <div class="form-row">
+        <input type="text" id="task-title" placeholder="Task title (e.g., Math chapter 5)" />
+        <input type="text" id="task-subject" placeholder="Subject" />
+        <select id="task-priority"><option value="low">Low</option><option value="medium" selected>Medium</option><option value="high">High</option></select>
+        <input type="date" id="task-due" />
+        <button class="btn" id="add-task">Add</button>
+      </div>
+      <ul class="list" id="task-list"></ul>
+    </div>
+
+    <div class="section">
+      <h2>Notes</h2>
+      <div class="form-row">
+        <input type="text" id="note-title" placeholder="Note title" />
+        <input type="text" id="note-subject" placeholder="Subject" />
+      </div>
+      <div class="form-row">
+        <textarea id="note-content" placeholder="Note content..." rows="2"></textarea>
+        <button class="btn" id="add-note">Save</button>
+      </div>
+      <ul class="list" id="note-list"></ul>
+    </div>
+  </section>
+
+  <!-- MOTHER -->
+  <section class="page" id="page-mother">
+    <h2 class="greeting">🛒 Grocery & Budget</h2>
+    <p class="sub">Manage shopping and monthly spending.</p>
+
+    <div class="grid">
+      <div class="card accent-sage">
+        <h3>Monthly Budget</h3>
+        <div class="num">$<span id="budget-total">600</span></div>
+        <div class="progress-wrap"><div class="progress" id="budget-progress" style="width:0%"></div></div>
+        <div class="hint">Spent $<span id="budget-spent">0</span> / Left $<span id="budget-remaining">600</span></div>
+      </div>
+      <div class="card accent-amber"><h3>Shopping Items</h3><div class="num" id="grocery-count">0</div><div class="hint"><span id="grocery-low">0</span> low-stock</div></div>
+      <div class="card accent-rose">
+        <h3>Set Budget</h3>
+        <input type="number" id="budget-input" placeholder="Monthly $" />
+        <button class="btn" id="set-budget" style="margin-top:8px;width:100%">Update</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Add grocery item</h2>
+      <div class="form-row">
+        <input type="text" id="g-name" placeholder="Item (e.g., Milk)" />
+        <input type="number" id="g-qty" placeholder="Qty" value="1" min="1" />
+        <input type="text" id="g-unit" placeholder="Unit" />
+        <input type="text" id="g-cat" placeholder="Category" />
+        <input type="number" id="g-price" placeholder="Price" step="0.01" min="0" />
+        <label class="check"><input type="checkbox" id="g-low" /> Low stock</label>
+        <button class="btn" id="add-grocery">Add</button>
+      </div>
+      <ul class="list" id="grocery-list"></ul>
+    </div>
+  </section>
+
+  <!-- FATHER -->
+  <section class="page" id="page-father">
+    <h2 class="greeting">💳 Bill Tracker</h2>
+    <p class="sub">Stay on top of bills and due dates.</p>
+
+    <div class="grid">
+      <div class="card accent-rose"><h3>Total Due</h3><div class="num">$<span id="bills-due-total">0</span></div><div class="hint">unpaid bills</div></div>
+      <div class="card accent-amber"><h3>Due This Week</h3><div class="num" id="bills-week">0</div><div class="hint">upcoming</div></div>
+      <div class="card accent-blue"><h3>Overdue</h3><div class="num" id="bills-overdue">0</div><div class="hint">need attention</div></div>
+    </div>
+
+    <div class="section">
+      <h2>Add a bill</h2>
+      <div class="form-row">
+        <input type="text" id="b-name" placeholder="Bill (e.g., Electricity)" />
+        <input type="number" id="b-amount" placeholder="Amount" step="0.01" min="0" />
+        <input type="text" id="b-cat" placeholder="Category" />
+        <input type="date" id="b-due" />
+        <label class="check"><input type="checkbox" id="b-rec" /> Recurring</label>
+        <button class="btn" id="add-bill">Add</button>
+      </div>
+      <ul class="list" id="bill-list"></ul>
+    </div>
+  </section>
+
+  <!-- CALENDAR -->
+  <section class="page" id="page-calendar">
+    <h2 class="greeting">📅 Family Calendar</h2>
+    <p class="sub">Everyone's events in one place.</p>
+
+    <div class="section">
+      <h2>Add an event</h2>
+      <div class="form-row">
+        <input type="text" id="ev-title" placeholder="Event title" />
+        <input type="datetime-local" id="ev-start" />
+        <select id="ev-member">
+          <option value="family">Whole Family</option>
+          <option value="student">Student</option>
+          <option value="mother">Mother</option>
+          <option value="father">Father</option>
+        </select>
+        <button class="btn" id="add-event">Add</button>
+      </div>
+      <input type="text" id="ev-desc" placeholder="Optional description" style="width:100%;margin-bottom:14px" />
+      <div id="event-list"></div>
+    </div>
+  </section>
+
+  <!-- NOTIFICATIONS -->
+  <section class="page" id="page-notifications">
+    <h2 class="greeting">🔔 Notifications</h2>
+    <p class="sub">Smart alerts. Tap "Enable Alerts" up top to get them on your phone.</p>
+    <div class="section"><div id="notification-list"></div></div>
+  </section>
+</main>
+
+<footer>
+  Daily Life Assistant • Frontend connected to backend at <code id="api-url">/api</code>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

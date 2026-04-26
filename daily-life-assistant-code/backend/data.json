@@ -1,0 +1,199 @@
+{
+  "budget": 200000,
+  "nextId": 103,
+  "tasks": [
+    {
+      "id": 3,
+      "title": "Read English novel ch 3",
+      "subject": "English",
+      "priority": "low",
+      "due": "2026-05-02",
+      "done": true
+    },
+    {
+      "id": 101,
+      "done": false,
+      "title": "english chepter1",
+      "subject": "english",
+      "priority": "medium",
+      "due": "2026-04-22"
+    }
+  ],
+  "notes": [
+    {
+      "id": 1,
+      "title": "Photosynthesis summary",
+      "subject": "Biology",
+      "content": "Plants convert sunlight + CO2 + water into glucose and oxygen."
+    },
+    {
+      "id": 2,
+      "title": "Pythagorean identities",
+      "subject": "Mathematics",
+      "content": "sin²+cos²=1; 1+tan²=sec²; 1+cot²=csc²."
+    }
+  ],
+  "grocery": [
+    {
+      "id": 1,
+      "name": "Milk",
+      "qty": 2,
+      "unit": "gallon",
+      "cat": "dairy",
+      "price": 4.5,
+      "purchased": false,
+      "low": true
+    },
+    {
+      "id": 2,
+      "name": "Eggs",
+      "qty": 1,
+      "unit": "dozen",
+      "cat": "dairy",
+      "price": 3.99,
+      "purchased": true,
+      "low": false
+    },
+    {
+      "id": 3,
+      "name": "Bread",
+      "qty": 2,
+      "unit": "loaf",
+      "cat": "bakery",
+      "price": 2.75,
+      "purchased": false,
+      "low": false
+    },
+    {
+      "id": 4,
+      "name": "Bananas",
+      "qty": 6,
+      "unit": "pcs",
+      "cat": "produce",
+      "price": 0.3,
+      "purchased": true,
+      "low": false
+    },
+    {
+      "id": 5,
+      "name": "Cooking oil",
+      "qty": 1,
+      "unit": "bottle",
+      "cat": "pantry",
+      "price": 8.5,
+      "purchased": false,
+      "low": true
+    },
+    {
+      "id": 6,
+      "name": "Rice",
+      "qty": 1,
+      "unit": "bag",
+      "cat": "pantry",
+      "price": 12,
+      "purchased": true,
+      "low": false
+    },
+    {
+      "id": 102,
+      "purchased": false,
+      "low": false,
+      "name": "milk",
+      "qty": 1,
+      "unit": "1kg",
+      "cat": "ligud",
+      "price": 200
+    }
+  ],
+  "bills": [
+    {
+      "id": 1,
+      "name": "Electricity",
+      "amount": 145,
+      "cat": "utility",
+      "due": "2026-04-27",
+      "paid": false,
+      "recurring": true
+    },
+    {
+      "id": 2,
+      "name": "Internet",
+      "amount": 65,
+      "cat": "utility",
+      "due": "2026-04-30",
+      "paid": false,
+      "recurring": true
+    },
+    {
+      "id": 3,
+      "name": "Water",
+      "amount": 38.5,
+      "cat": "utility",
+      "due": "2026-04-23",
+      "paid": false,
+      "recurring": true
+    },
+    {
+      "id": 4,
+      "name": "Car insurance",
+      "amount": 220,
+      "cat": "insurance",
+      "due": "2026-05-07",
+      "paid": false,
+      "recurring": true
+    },
+    {
+      "id": 5,
+      "name": "Gas",
+      "amount": 72.3,
+      "cat": "utility",
+      "due": "2026-04-10",
+      "paid": true,
+      "recurring": true
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "title": "Parent-teacher meeting",
+      "start": "2026-04-26T17:00",
+      "member": "family",
+      "desc": "School meeting"
+    },
+    {
+      "id": 2,
+      "title": "Soccer practice",
+      "start": "2026-04-27T16:00",
+      "member": "student",
+      "desc": "Bring water bottle"
+    },
+    {
+      "id": 3,
+      "title": "Grocery shopping",
+      "start": "2026-04-28T10:00",
+      "member": "mother",
+      "desc": "Weekly run"
+    },
+    {
+      "id": 4,
+      "title": "Bill review",
+      "start": "2026-04-29T19:00",
+      "member": "father",
+      "desc": "Sort out monthly bills"
+    },
+    {
+      "id": 5,
+      "title": "Family movie night",
+      "start": "2026-05-01T20:00",
+      "member": "family",
+      "desc": "Pick something everyone likes"
+    },
+    {
+      "id": 103,
+      "title": "birthday",
+      "start": "2026-04-29T14:11",
+      "member": "family",
+      "desc": "brother of son"
+    }
+  ]
+}
