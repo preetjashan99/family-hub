@@ -181,7 +181,39 @@ app.put('/api/budget', (req, res) => {
   saveData(data);
   res.json({ budget: data.budget });
 });
+// -------- Telegram Notifications --------
+const TELEGRAM_TOKEN = '8714763287:AAGhv_mYzm6S9U_IOZT7GuebPj8JYnDFoDM';
+const TELEGRAM_CHAT_ID = '8138319443';
 
+async function sendTelegram(message) {
+  try {
+    const https = require('https');
+    const text = encodeURIComponent(message);
+    https.get(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=${text}`);
+  } catch(e) { console.log('Telegram error:', e); }
+}
+
+function checkAndNotify() {
+  const data = loadData();
+  const now = new Date();
+  data.bills.forEach(b => {
+    if (b.paid) return;
+    const diff = (new Date(b.due) - now) / 86400000;
+    if (diff <= 1 && diff >= 0) sendTelegram(`⚠️ ${b.name} bill $${b.amount} kal due hai!`);
+    if (diff < 0) sendTelegram(`🚨 ${b.name} bill OVERDUE! $${b.amount}`);
+  });
+  data.tasks.forEach(t => {
+    if (t.done || !t.due) return;
+    const diff = (new Date(t.due) - now) / 86400000;
+    if (diff <= 1 && diff >= 0) sendTelegram(`📚 Task "${t.title}" kal due hai!`);
+  });
+  data.grocery.forEach(g => {
+    if (g.low && !g.purchased) sendTelegram(`🛒 ${g.name} khatam hon wala hai!`);
+  });
+}
+
+setInterval(checkAndNotify, 3600000);
+setTimeout(checkAndNotify, 5000);
 /* ---------- Start server ---------- */
 app.listen(PORT, '0.0.0.0', () => {
   console.log('===========================================');
